@@ -57,9 +57,9 @@ module XCDM
       if !options[:default].nil?
         property[:defaultValueString] = normalize_value(options.delete(:default))
       elsif [:integer16, :integer32, :integer64].include?(type)
-        property[:defaultValueString] = "0"
+        property[:defaultValueString] = nil#"0"
       elsif [:float, :double, :decimal].include?(type)
-        property[:defaultValueString] = "0.0"
+        property[:defaultValueString] = nil#"0.0"
       end
 
       normalize_values(options, property)
@@ -162,6 +162,7 @@ module XCDM
       case value
       when false; 'NO'
       when true; 'YES'
+      when nil; nil
       else value.to_s
       end
     end
